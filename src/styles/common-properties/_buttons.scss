@@ -1,0 +1,14 @@
+.common-buttons {
+    text-transform: uppercase;
+    border: 2px solid #dd55bb;
+    background-color: transparent;
+    padding: 1em 2em;
+    width: 100%;
+    font-weight: bolder;
+    transition: 0.1s;
+
+    &:hover {
+        background-color: #dd55bb;
+        color:rgb(255, 255, 255);
+    }
+}

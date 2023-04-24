@@ -1,0 +1,25 @@
+{
+  "name": "fs15_3-todo-app",
+  "version": "1.0.0",
+  "description": "Integrify Academy third assignment",
+  "main": "./src/index.html",
+  "scripts": {
+    "sass:watch": "sass --watch src/styles/style.scss src/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simojjuho/fs15_3-todo-app.git"
+  },
+  "keywords": [
+    "to-do",
+    "integrify",
+    "javascript",
+    "dom"
+  ],
+  "author": "Juho Simojoki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simojjuho/fs15_3-todo-app/issues"
+  },
+  "homepage": "https://github.com/simojjuho/fs15_3-todo-app#readme"
+}

@@ -1,0 +1,60 @@
+@use "variables/colors";
+
+@use "common-properties/buttons";
+@use "common-properties/layout";
+
+body {
+    background: colors.$background center no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    background-color: rgb(255, 255, 255);
+    padding: 2em;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgb(0,0,0);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    #add-item-btn {
+        @extend .common-buttons;
+        position: relative;
+    }
+
+    form {
+        /* height: 0px;
+        overflow-y: hidden; */
+        @extend .input-container-common;
+
+        .task-input-container {
+            @extend .input-container-common;
+        }
+
+        .task-date-container {
+            @extend .input-container-common;
+        }
+
+        .task-state-container {
+            @extend .input-container-common;
+            
+            #state-input {
+                background-color: transparent;
+                border: none;
+                border-bottom: 1px solid black;
+
+                option {
+                    background-color: white;
+                }
+            }
+        }
+
+        button {
+            @extend .common-buttons;
+        }
+    }
+}
+

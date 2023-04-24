@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>To-do app</title>
+</head>
+<body>
+    <section>
+        <button id="add-item-btn">Add new item <span id="add-item-btn__sign">+</span></button>
+        <form action="" method="post">
+            <div class="task-input-container">
+                <label for="task-input">Task name:</label>
+                <input type="text" id="task-input">
+            </div>
+            <div class="task-date-container">
+                <label for="date-input">Date:</label>
+                <input type="date" name="" id="date-input">
+            </div>
+            <div class="task-state-container">
+                <label for="state-input">Current state:</label>
+                <select name="" id="state-input">
+                    <option value="not-started">Not started</option>
+                    <option value="in-progress">In progress</option>
+                    <option value="done">Done</option>
+                </select>
+            </div>
+            <button type="submit">Save</button>
+            <button type="reset">Reset</button>
+        </form>
+        <article id="items">
+            <ul id="items-container"></ul>
+        </article>
+    </section>
+    <script src="scripts/index.js"></script>
+</body>
+</html>

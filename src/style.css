@@ -1,0 +1,55 @@
+@charset "UTF-8";
+.common-buttons, section #add-item-btn, section form button {
+  text-transform: uppercase;
+  border: 2px solid #dd55bb;
+  background-color: transparent;
+  padding: 1em 2em;
+  width: 100%;
+  font-weight: bolder;
+  transition: 0.1s;
+}
+.common-buttons:hover, section #add-item-btn:hover, section form button:hover {
+  background-color: #dd55bb;
+  color: rgb(255, 255, 255);
+}
+
+.input-container-common, section form, section form .task-input-container, section form .task-date-container, section form .task-state-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+body {
+  background: linear-gradient(45deg, #dd55bb, #1144DD, #dddddd) center no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  background-color: rgb(255, 255, 255);
+  padding: 2em;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+section #add-item-btn {
+  position: relative;
+}
+section form {
+  /* height: 0px;
+  overflow-y: hidden; */
+}
+section form .task-state-container #state-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+}
+section form .task-state-container #state-input option  {
+  background-color: white;
+}
+
+/*# sourceMappingURL=style.css.map */
