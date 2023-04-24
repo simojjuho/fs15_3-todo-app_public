@@ -1,5 +1,7 @@
 # To-do list
 
+by Juho Simojoki
+
 Create a simple application to let users add/remove/edit tasks.
 Tasks should have: title, deadline, status
 ![task-list](task_list.png)
