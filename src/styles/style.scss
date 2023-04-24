@@ -26,15 +26,15 @@ section {
     }
 
     form {
-        /* height: 0px;
-        overflow-y: hidden; */
+        height: 0px;
+        overflow-y: hidden;
         @extend .input-container-common;
 
         .task-input-container {
             @extend .input-container-common;
         }
 
-        .task-date-container {
+        .task-deadline-container {
             @extend .input-container-common;
         }
 

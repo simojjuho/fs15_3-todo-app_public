@@ -13,7 +13,7 @@
   color: rgb(255, 255, 255);
 }
 
-.input-container-common, section form, section form .task-input-container, section form .task-date-container, section form .task-state-container {
+.input-container-common, section form, section form .task-input-container, section form .task-deadline-container, section form .task-state-container {
   display: flex;
   flex-direction: column;
   gap: 0.3em;
@@ -40,8 +40,8 @@ section #add-item-btn {
   position: relative;
 }
 section form {
-  /* height: 0px;
-  overflow-y: hidden; */
+  height: 0px;
+  overflow-y: hidden;
 }
 section form .task-state-container #state-input {
   background-color: transparent;

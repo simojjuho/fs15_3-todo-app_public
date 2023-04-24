@@ -10,14 +10,14 @@
 <body>
     <section>
         <button id="add-item-btn">Add new item <span id="add-item-btn__sign">+</span></button>
-        <form action="" method="post">
+        <form id="section__form" action="" method="post">
             <div class="task-input-container">
                 <label for="task-input">Task name:</label>
                 <input type="text" id="task-input">
             </div>
-            <div class="task-date-container">
-                <label for="date-input">Date:</label>
-                <input type="date" name="" id="date-input">
+            <div class="task-deadline-container">
+                <label for="deadline-input">Date:</label>
+                <input type="date" name="" id="deadline-input">
             </div>
             <div class="task-state-container">
                 <label for="state-input">Current state:</label>
@@ -27,8 +27,8 @@
                     <option value="done">Done</option>
                 </select>
             </div>
-            <button type="submit">Save</button>
-            <button type="reset">Reset</button>
+            <button id="cancel-btn" type="submit">Cancel</button>
+            <button id="confirm-btn" type="submit">Confirm</button>
         </form>
         <article id="items">
             <ul id="items-container"></ul>
