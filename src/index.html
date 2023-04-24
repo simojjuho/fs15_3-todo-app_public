@@ -13,25 +13,26 @@
         <form id="section__form" action="" method="post">
             <div class="task-input-container">
                 <label for="task-input">Task name:</label>
-                <input type="text" id="task-input">
+                <input type="text" id="task-input" required>
             </div>
             <div class="task-deadline-container">
                 <label for="deadline-input">Date:</label>
                 <input type="date" name="" id="deadline-input">
             </div>
-            <div class="task-state-container">
-                <label for="state-input">Current state:</label>
-                <select name="" id="state-input">
-                    <option value="not-started">Not started</option>
-                    <option value="in-progress">In progress</option>
-                    <option value="done">Done</option>
+            <div class="task-status-container">
+                <label for="status-input">Current state:</label>
+                <select name="" id="status-input" required>
+                    <option value="Not started" >Not started</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Done" >Done</option>
                 </select>
             </div>
             <button id="cancel-btn" type="submit">Cancel</button>
             <button id="confirm-btn" type="submit">Confirm</button>
         </form>
         <article id="items">
-            <ul id="items-container"></ul>
+            <ul id="items__container">
+            </ul>
         </article>
     </section>
     <script src="scripts/index.js"></script>

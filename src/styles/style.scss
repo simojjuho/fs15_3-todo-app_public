@@ -4,8 +4,8 @@
 @use "common-properties/layout";
 
 body {
-    background: colors.$background center no-repeat;
-    height: 100vh;
+    background: fixed colors.$background center no-repeat;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +13,10 @@ body {
 
 section {
     background-color: rgb(255, 255, 255);
+    width: 50vw;
     padding: 2em;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
     border-radius: 20px;
     box-shadow: 0 0 10px rgb(0,0,0);
     display: flex;
@@ -23,12 +26,17 @@ section {
     #add-item-btn {
         @extend .common-buttons;
         position: relative;
+        display: block;
     }
 
     form {
         height: 0px;
         overflow-y: hidden;
-        @extend .input-container-common;
+        @extend .input-container-common;     
+
+        &.active {
+            height: 100%;
+        }
 
         .task-input-container {
             @extend .input-container-common;
@@ -38,10 +46,10 @@ section {
             @extend .input-container-common;
         }
 
-        .task-state-container {
+        .task-status-container {
             @extend .input-container-common;
             
-            #state-input {
+            #status-input {
                 background-color: transparent;
                 border: none;
                 border-bottom: 1px solid black;
@@ -57,4 +65,29 @@ section {
         }
     }
 }
+
+#items {
+
+    #items__container {
+        list-style: none;
+        padding-left: 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        .items__container__task {
+            div {
+                h2 {
+                    line-height: 0.1;
+                    font-size: 12;
+                }
+                padding: 2px 1em 5px 3em;
+                
+            }
+            &:nth-child(even) {
+                background-color: lightgrey;
+            }
+        }
+    }
+}
+
 

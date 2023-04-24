@@ -13,15 +13,15 @@
   color: rgb(255, 255, 255);
 }
 
-.input-container-common, section form, section form .task-input-container, section form .task-deadline-container, section form .task-state-container {
+.input-container-common, section form, section form .task-input-container, section form .task-deadline-container, section form .task-status-container {
   display: flex;
   flex-direction: column;
   gap: 0.3em;
 }
 
 body {
-  background: linear-gradient(45deg, #dd55bb, #1144DD, #dddddd) center no-repeat;
-  height: 100vh;
+  background: fixed linear-gradient(45deg, #dd55bb, #1144DD, #dddddd) center no-repeat;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,7 +29,10 @@ body {
 
 section {
   background-color: rgb(255, 255, 255);
+  width: 50vw;
   padding: 2em;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
   border-radius: 20px;
   box-shadow: 0 0 10px rgb(0, 0, 0);
   display: flex;
@@ -38,18 +41,39 @@ section {
 }
 section #add-item-btn {
   position: relative;
+  display: block;
 }
 section form {
   height: 0px;
   overflow-y: hidden;
 }
-section form .task-state-container #state-input {
+section form.active {
+  height: 100%;
+}
+section form .task-status-container #status-input {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid black;
 }
-section form .task-state-container #state-input option  {
+section form .task-status-container #status-input option  {
   background-color: white;
+}
+#items #items__container {
+  list-style: none;
+  padding-left: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+#items #items__container .items__container__task div {
+  padding: 2px 1em 5px 3em;
+}
+#items #items__container .items__container__task div h2 {
+  line-height: 0.1;
+  font-size: 12;
+}
+#items #items__container .items__container__task:nth-child(even) {
+  background-color: lightgrey;
 }
 
 /*# sourceMappingURL=style.css.map */
