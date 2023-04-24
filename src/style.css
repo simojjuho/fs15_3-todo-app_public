@@ -1,5 +1,4 @@
-@charset "UTF-8";
-.common-buttons, section #add-item-btn, section form button {
+.common-buttons, section #add-item-btn, section #section__form button, .edit-btn {
   text-transform: uppercase;
   border: 2px solid #dd55bb;
   background-color: transparent;
@@ -8,12 +7,16 @@
   font-weight: bolder;
   transition: 0.1s;
 }
-.common-buttons:hover, section #add-item-btn:hover, section form button:hover {
+.common-buttons:hover, section #add-item-btn:hover, section #section__form button:hover, .edit-btn:hover {
   background-color: #dd55bb;
   color: rgb(255, 255, 255);
 }
+.common-buttons:active, section #add-item-btn:active, section #section__form button:active, .edit-btn:active {
+  background-color: white;
+  color: #dd55bb;
+}
 
-.input-container-common, section form, section form .task-input-container, section form .task-deadline-container, section form .task-status-container {
+.input-container-common, section #section__form, section #section__form .task-input-container, section #section__form .task-deadline-container, section #section__form .task-status-container {
   display: flex;
   flex-direction: column;
   gap: 0.3em;
@@ -29,7 +32,9 @@ body {
 
 section {
   background-color: rgb(255, 255, 255);
-  width: 50vw;
+  width: 80vw;
+  max-width: 500px;
+  min-height: 15em;
   padding: 2em;
   margin-top: 10vh;
   margin-bottom: 10vh;
@@ -37,43 +42,86 @@ section {
   box-shadow: 0 0 10px rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1em;
 }
 section #add-item-btn {
   position: relative;
   display: block;
 }
-section form {
+section #section__form {
   height: 0px;
   overflow-y: hidden;
+  display: flex;
+  gap: 0.5em;
 }
-section form.active {
+section #section__form.active {
   height: 100%;
 }
-section form .task-status-container #status-input {
+section #section__form .task-status-container #status-input {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid black;
 }
-section form .task-status-container #status-input option  {
+section #section__form .task-status-container #status-input option {
   background-color: white;
 }
-#items #items__container {
+section #items {
+  display: block;
+}
+section #items #items__container {
   list-style: none;
   padding-left: 0px;
   display: flex;
   flex-direction: column;
+  position: relative;
   gap: 0.5em;
 }
-#items #items__container .items__container__task div {
+section #items #items__container .items__container__task div {
   padding: 2px 1em 5px 3em;
 }
-#items #items__container .items__container__task div h2 {
+section #items #items__container .items__container__task div h2 {
   line-height: 0.1;
   font-size: 12;
 }
-#items #items__container .items__container__task:nth-child(even) {
+section #items #items__container .items__container__task:nth-child(even) {
   background-color: lightgrey;
+}
+section #items #have-tasks {
+  display: block;
+}
+section #single-task {
+  display: none;
+}
+
+.active-task {
+  position: absolute;
+  background-color: white;
+  height: 6em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+  width: 100%;
+}
+.active-task div {
+  align-self: self-start;
+}
+
+.delete-btn {
+  text-transform: uppercase;
+  padding: 1em 2em;
+  width: 100%;
+  font-weight: bolder;
+  transition: 0.1s;
+  border: 2px solid red;
+  background-color: red;
+  color: white;
+  transition: 0.2s;
+}
+.delete-btn:hover {
+  background-color: white;
+  color: red;
 }
 
 /*# sourceMappingURL=style.css.map */

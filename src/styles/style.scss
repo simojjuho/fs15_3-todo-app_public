@@ -13,7 +13,9 @@ body {
 
 section {
     background-color: rgb(255, 255, 255);
-    width: 50vw;
+    width: 80vw;
+    max-width: 500px;
+    min-height: 15em;
     padding: 2em;
     margin-top: 10vh;
     margin-bottom: 10vh;
@@ -21,6 +23,7 @@ section {
     box-shadow: 0 0 10px rgb(0,0,0);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 1em;
 
     #add-item-btn {
@@ -29,9 +32,11 @@ section {
         display: block;
     }
 
-    form {
+    #section__form {
         height: 0px;
         overflow-y: hidden;
+        display: flex;
+        gap: 0.5em;
         @extend .input-container-common;     
 
         &.active {
@@ -54,7 +59,7 @@ section {
                 border: none;
                 border-bottom: 1px solid black;
 
-                option {
+                option {
                     background-color: white;
                 }
             }
@@ -64,30 +69,76 @@ section {
             @extend .common-buttons;
         }
     }
-}
+    #items {
+        display: block;
 
-#items {
-
-    #items__container {
-        list-style: none;
-        padding-left: 0px;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5em;
-        .items__container__task {
-            div {
-                h2 {
-                    line-height: 0.1;
-                    font-size: 12;
+        #items__container {
+            list-style: none;
+            padding-left: 0px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            gap: 0.5em;
+            .items__container__task {
+                div {
+                    padding: 2px 1em 5px 3em;
+    
+                    h2 {
+                        line-height: 0.1;
+                        font-size: 12;
+                    }
                 }
-                padding: 2px 1em 5px 3em;
-                
-            }
-            &:nth-child(even) {
-                background-color: lightgrey;
+                &:nth-child(even) {
+                    background-color: lightgrey;
+                }
             }
         }
+        #have-tasks {
+            display: block;
+            
+        }
+    }
+    #single-task {
+        display: none;
     }
 }
+
+.active-task {
+    position: absolute;
+    background-color: white;
+    height: 6em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    width: 100%;
+
+    div {
+        align-self: self-start;
+    }
+}
+
+.edit-btn {
+    @extend .common-buttons;
+}
+
+.delete-btn {
+    text-transform: uppercase;
+    padding: 1em 2em;
+    width: 100%;
+    font-weight: bolder;
+    transition: 0.1s;    
+    border: 2px solid red;
+    background-color: red;
+    color: white;
+    transition: 0.2s;
+
+    &:hover {
+        background-color: white;
+        color: red;
+    }
+}
+
+
 
 
