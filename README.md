@@ -1,6 +1,7 @@
 # To-do list
-
 by Juho Simojoki
+
+This site is deployed @ [link](https://lucent-cendol-50e6f3.netlify.app/)
 
 ## Description
 
