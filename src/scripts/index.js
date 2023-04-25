@@ -1,5 +1,6 @@
 //Variables
 
+let section = document.querySelector('section')
 let addItemBtn = document.getElementById('add-item-btn')
 let form = document.getElementById('section__form')
 let taskInput = document.getElementById('task-input')
@@ -10,6 +11,8 @@ let confirmBtn = document.getElementById('confirm-btn')
 let itemsContainer = document.getElementById('items__container')
 let taskAmount = document.getElementById('task-amount')
 let singleTasks = document.getElementsByClassName('items__container__task')
+let haveTasks = document.getElementById('have-tasks')
+
 let tasks = []
 let amountOfTasks = tasks.length
 
@@ -25,20 +28,21 @@ function assignTaskListeners() {
     console.log(singleTasks);
     Array.from(singleTasks).forEach((elem) => {
       const toggleActiveTask = () => {
-        elem.classList.toggle("active-task");
-        addItemBtn.style.display = "none";
-        form.style.display = "none";
+        elem.classList.toggle('active-task');
+        addItemBtn.style.display = 'none';
+        form.style.display = 'none'
+        haveTasks.style.display = 'none'
         const editBtn = createButton("edit");
         assignEditListener(editBtn, elem);
         const deleteBtn = createButton("delete");
         assignDelListener(deleteBtn, elem);
         elem.appendChild(editBtn);
         elem.appendChild(deleteBtn);
-        elem.removeEventListener("click", toggleActiveTask);
+        elem.removeEventListener('click', toggleActiveTask);
       };
-      elem.addEventListener("click", toggleActiveTask);
+      elem.addEventListener('click', toggleActiveTask);
     });
-  }
+}
 
 
 function assignDelListener(button, item) {
@@ -52,14 +56,68 @@ function assignDelListener(button, item) {
 
 function assignEditListener(button, item){
     button.addEventListener('click', function(){
+        item.querySelector('.edit-btn').remove()
+
+        let id = item.querySelector('span').innerText
+        const newForm = document.createElement('form')
+
+        const newTask = document.createElement('input')
+        newTask.value = item.querySelector('h2').innerText
+        const newDlInput = document.createElement('input')
+        newDlInput.value = item.querySelector('p').innerText
+        // create select element
+        const select = document.createElement('select');
+        select.id = 'status';
+
+        // create option elements
+        const inProgressOption = document.createElement('option');
+        inProgressOption.value = 'in-progress';
+        inProgressOption.text = 'In progress';
+
+        const notStartedOption = document.createElement('option');
+        notStartedOption.value = 'not-started';
+        notStartedOption.text = 'Not started';
+
+        const doneOption = document.createElement('option');
+        doneOption.value = 'done';
+        doneOption.text = 'Done';
+
+        const newSaveBtn = createButton('Save')
+        newSaveBtn.innerText = 'save'
+
+        // add option elements to select element
+        select.appendChild(inProgressOption);
+        select.appendChild(notStartedOption);
+        select.appendChild(doneOption);
+        console.log(newTask)
+        newForm.appendChild(newTask)
+        newForm.appendChild(newDlInput)
+        newForm.appendChild(select);
+        newForm.appendChild(newSaveBtn)
+        newForm.classList.add('active')
+        item.appendChild(newForm)
+        newForm.style.display = 'flex'
+        
         console.log(item)
+
+        newSaveBtn.addEventListener('click', function(e){
+            e.preventDefault()
+            const newObj = {
+                id: id,
+                task: newTask.value,
+                deadline: newDlInput.value,
+                status: select.value
+            }
+            tasks = tasks.map(task => task.id === newObj.id ? newObj : task )
+            item.querySelector('h2').innerText = newTask.value
+            item.querySelector('p').innerTet = newDlInput.value
+            item.querySelector('div').style.borderLeftColor = getBorderColor(select.value)
+
+            newForm.classList.remove('active')
+            assignCreateTaskListener()
+        })
     })
 }
-
-const newElem = createElement({id: 1, task: "Do better", deadline: 2023-04-25})
-itemsContainer.appendChild(newElem)
-assignTaskListeners()
-
 
 
 //Open form
@@ -77,13 +135,18 @@ cancelBtn.addEventListener('click', function (e) {
 })
 
 // Add a new task item
-confirmBtn.addEventListener('click', function(e){
-    e.preventDefault()
-    const newObject = createObject();
-    const newElement = createElement(newObject)
-    itemsContainer.appendChild(newElement)
-    assignTaskListeners()
-})
+function assignCreateTaskListener(){
+    confirmBtn.addEventListener('click', function(e){
+        console.log('still here!')
+        e.preventDefault()
+        const newObject = createObject();
+        const newElement = createElement(newObject)
+        itemsContainer.appendChild(newElement)
+        assignTaskListeners()
+    })
+}
+
+assignCreateTaskListener()
 
 
 // Fuctions
@@ -108,8 +171,10 @@ function createElement (object){
     const borderColor = getBorderColor(object.status)
     const newDiv = document.createElement('div')
     newDiv.style.borderLeft = `3px solid ${borderColor}`
+    const newSpan = createTextElement(object.id, 'span')
     const newH2 = createTextElement(object.task, 'h2')
     const newPrg = createTextElement(`Deadline: ${object.deadline}`, 'p')
+    newDiv.appendChild(newSpan)
     newDiv.appendChild(newH2)
     newDiv.appendChild(newPrg)
     newElem.appendChild(newDiv)
