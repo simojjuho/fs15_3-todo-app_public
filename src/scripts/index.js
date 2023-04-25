@@ -28,11 +28,10 @@ function assignTaskListeners() {
         elem.classList.toggle("active-task");
         addItemBtn.style.display = "none";
         form.style.display = "none";
-        console.log(this);
         const editBtn = createButton("edit");
-        assignEditListener(editBtn);
+        assignEditListener(editBtn, elem);
         const deleteBtn = createButton("delete");
-        assignDelListener(deleteBtn);
+        assignDelListener(deleteBtn, elem);
         elem.appendChild(editBtn);
         elem.appendChild(deleteBtn);
         elem.removeEventListener("click", toggleActiveTask);
@@ -42,10 +41,18 @@ function assignTaskListeners() {
   }
 
 
-
-function assignEditListener(button){
+function assignDelListener(button, item) {
     button.addEventListener('click', function(){
-       
+        button.parentElement.parentElement.removeChild(item)
+        item.classList.toggle("active-task");
+        addItemBtn.style.display = "block";
+        form.style.display = "flex";
+    })
+}
+
+function assignEditListener(button, item){
+    button.addEventListener('click', function(){
+        console.log(item)
     })
 }
 
