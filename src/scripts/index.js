@@ -64,32 +64,15 @@ function assignEditListener(button, item){
         const newTask = document.createElement('input')
         newTask.value = item.querySelector('h2').innerText
         const newDlInput = document.createElement('input')
-        newDlInput.value = item.querySelector('p').innerText
-        // create select element
-        const select = document.createElement('select');
-        select.id = 'status';
+        newDlInput.value = item.querySelector('.deadline').innerText
+        console.log(newDlInput.value)
+        newDlInput.attributes.type = 'date'
 
-        // create option elements
-        const inProgressOption = document.createElement('option');
-        inProgressOption.value = 'in-progress';
-        inProgressOption.text = 'In progress';
-
-        const notStartedOption = document.createElement('option');
-        notStartedOption.value = 'not-started';
-        notStartedOption.text = 'Not started';
-
-        const doneOption = document.createElement('option');
-        doneOption.value = 'done';
-        doneOption.text = 'Done';
+        const select = createSelectElement()
 
         const newSaveBtn = createButton('Save')
         newSaveBtn.innerText = 'save'
 
-        // add option elements to select element
-        select.appendChild(inProgressOption);
-        select.appendChild(notStartedOption);
-        select.appendChild(doneOption);
-        console.log(newTask)
         newForm.appendChild(newTask)
         newForm.appendChild(newDlInput)
         newForm.appendChild(select);
@@ -97,25 +80,28 @@ function assignEditListener(button, item){
         newForm.classList.add('active')
         item.appendChild(newForm)
         newForm.style.display = 'flex'
+        assignSaveBtnListener(newSaveBtn, item, id, newTask, newDlInput, select, newForm)
+
         
-        console.log(item)
+    })
+}
 
-        newSaveBtn.addEventListener('click', function(e){
-            e.preventDefault()
-            const newObj = {
-                id: id,
-                task: newTask.value,
-                deadline: newDlInput.value,
-                status: select.value
-            }
-            tasks = tasks.map(task => task.id === newObj.id ? newObj : task )
-            item.querySelector('h2').innerText = newTask.value
-            item.querySelector('p').innerTet = newDlInput.value
-            item.querySelector('div').style.borderLeftColor = getBorderColor(select.value)
+function assignSaveBtnListener(newSaveBtn, item, id, newTask, newDlInput, select, newForm){
+    newSaveBtn.addEventListener('click', function(e){
+        e.preventDefault()
+        const newObj = {
+            id: id,
+            task: newTask.value,
+            deadline: newDlInput.value,
+            status: select.value
+        }
+        tasks = tasks.map(task => task.id === newObj.id ? newObj : task )
+        item.querySelector('h2').innerText = newTask.value
+        item.querySelector('.deadline').innerText = newDlInput.value
+        item.querySelector('div').style.borderLeftColor = getBorderColor(select.value)
+        console.log(newDlInput.value, select.value)
 
-            newForm.classList.remove('active')
-            assignCreateTaskListener()
-        })
+        item.removeChild(newForm)
     })
 }
 
@@ -137,10 +123,9 @@ cancelBtn.addEventListener('click', function (e) {
 // Add a new task item
 function assignCreateTaskListener(){
     confirmBtn.addEventListener('click', function(e){
-        console.log('still here!')
         e.preventDefault()
         const newObject = createObject();
-        const newElement = createElement(newObject)
+        const newElement = createTaskElement(newObject)
         itemsContainer.appendChild(newElement)
         assignTaskListeners()
     })
@@ -165,7 +150,7 @@ function createObject (){
 }
 
 // Creating the element to store.
-function createElement (object){
+function createTaskElement (object){
     const newElem = document.createElement('li')
     newElem.classList.add('items__container__task')
     const borderColor = getBorderColor(object.status)
@@ -173,7 +158,7 @@ function createElement (object){
     newDiv.style.borderLeft = `3px solid ${borderColor}`
     const newSpan = createTextElement(object.id, 'span')
     const newH2 = createTextElement(object.task, 'h2')
-    const newPrg = createTextElement(`Deadline: ${object.deadline}`, 'p')
+    const newPrg = createDateInput(object.deadline)
     newDiv.appendChild(newSpan)
     newDiv.appendChild(newH2)
     newDiv.appendChild(newPrg)
@@ -195,9 +180,9 @@ function emptyFields() {
 
 // Gets border color for the element.
 function getBorderColor(status){
-    return status === 'Not started'
+    return status === 'not-started'
         ? 'red'
-        : status === 'In progress'
+        : status === 'in-progress'
         ? 'yellow'
         :'green'
 }
@@ -209,8 +194,48 @@ function createButton(buttonText){
     return newBtn
 }
 
-function createTextElement(text, type) {
+function createTextElement(text, type, additionalText='') {
     const newElem = document.createElement(type)
-    newElem.innerText = text
+    newElem.innerHTML = `${additionalText} <span>${text}</span>`
     return newElem
+}
+
+function createDateInput(text) {
+    const newElem = document.createElement('p')
+    const newSpan = document.createElement('span')
+    newSpan.classList.add('deadline')
+    newSpan.innerText = text
+    const deadlineText = document.createElement('span')
+    deadlineText.innerText = "Deadline: "
+    newElem.appendChild(deadlineText)
+    newElem.appendChild(newSpan)
+    return newElem
+}
+
+function createSelectElement(){
+    // create select element
+    const select = document.createElement('select');
+    select.id = 'status';
+
+    // create option elements
+    const inProgressOption = document.createElement('option');
+    inProgressOption.value = 'in-progress';
+    inProgressOption.text = 'In progress';
+
+    const notStartedOption = document.createElement('option');
+    notStartedOption.value = 'not-started';
+    notStartedOption.text = 'Not started';
+
+    const doneOption = document.createElement('option');
+    doneOption.value = 'done';
+    doneOption.text = 'Done';
+
+    // add option elements to select element
+    select.appendChild(inProgressOption);
+    select.appendChild(notStartedOption);
+    select.appendChild(doneOption);
+    
+    console.log(select)
+
+    return select
 }
