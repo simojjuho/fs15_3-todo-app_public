@@ -25,7 +25,6 @@ window.addEventListener('load', function(){
 
 //This could be either here or in the functions part. Now it's here.
 function assignTaskListeners() {
-    console.log(singleTasks);
     Array.from(singleTasks).forEach((elem) => {
       const toggleActiveTask = () => {
         elem.classList.toggle('active-task');
@@ -38,6 +37,8 @@ function assignTaskListeners() {
         assignDelListener(deleteBtn, elem);
         elem.appendChild(editBtn);
         elem.appendChild(deleteBtn);
+        console.log('element: ',elem)
+        console.log('parent: ', elem.parentElement)
         elem.removeEventListener('click', toggleActiveTask);
       };
       elem.addEventListener('click', toggleActiveTask);
@@ -57,6 +58,7 @@ function assignDelListener(button, item) {
 function assignEditListener(button, item){
     button.addEventListener('click', function(){
         item.querySelector('.edit-btn').remove()
+        button.removeEventListener('click', assignEditListener)
 
         let id = item.querySelector('span').innerText
         const newForm = document.createElement('form')

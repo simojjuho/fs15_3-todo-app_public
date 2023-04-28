@@ -17,7 +17,6 @@ section {
     background-color: rgb(255, 255, 255);
     width: 80vw;
     max-width: 500px;
-    min-height: 15em;
     padding: 2em;
     margin-top: 10vh;
     margin-bottom: 10vh;
@@ -94,6 +93,40 @@ section {
                     background-color: lightgrey;
                 }
             }
+            .active-task {
+                position: relative;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+                align-items: center;
+                width: 100%;
+            
+                div {
+                    align-self: self-start;
+                }
+            
+                .edit-btn {
+                    @extend .common-buttons;
+                }
+                
+                .delete-btn {
+                    text-transform: uppercase;
+                    padding: 1em 2em;
+                    width: 100%;
+                    font-weight: bolder;
+                    transition: 0.1s;    
+                    border: 2px solid red;
+                    background-color: red;
+                    color: white;
+                    transition: 0.2s;
+                
+                    &:hover {
+                        background-color: white;
+                        color: red;
+                    }
+                }
+            }
         }
         #have-tasks {
             display: block;
@@ -105,41 +138,7 @@ section {
     }
 }
 
-.active-task {
-    position: relative;
-    background-color: white;
-    height: 6em;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    align-items: center;
-    width: 100%;
 
-    div {
-        align-self: self-start;
-    }
-}
-
-.edit-btn {
-    @extend .common-buttons;
-}
-
-.delete-btn {
-    text-transform: uppercase;
-    padding: 1em 2em;
-    width: 100%;
-    font-weight: bolder;
-    transition: 0.1s;    
-    border: 2px solid red;
-    background-color: red;
-    color: white;
-    transition: 0.2s;
-
-    &:hover {
-        background-color: white;
-        color: red;
-    }
-}
 
 
 

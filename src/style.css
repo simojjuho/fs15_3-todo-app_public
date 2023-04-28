@@ -1,4 +1,4 @@
-.common-buttons, section #add-item-btn, section #section__form button, .edit-btn {
+.common-buttons, section #add-item-btn, section #section__form button, section #items #items__container .active-task .edit-btn {
   text-transform: uppercase;
   border: 2px solid #1144DD;
   background-color: transparent;
@@ -7,11 +7,11 @@
   font-weight: bolder;
   transition: 0.1s;
 }
-.common-buttons:hover, section #add-item-btn:hover, section #section__form button:hover, .edit-btn:hover {
+.common-buttons:hover, section #add-item-btn:hover, section #section__form button:hover, section #items #items__container .active-task .edit-btn:hover {
   background-color: #1144DD;
   color: rgb(255, 255, 255);
 }
-.common-buttons:active, section #add-item-btn:active, section #section__form button:active, .edit-btn:active {
+.common-buttons:active, section #add-item-btn:active, section #section__form button:active, section #items #items__container .active-task .edit-btn:active {
   background-color: white;
   color: #1144DD;
 }
@@ -35,7 +35,6 @@ section {
   background-color: rgb(255, 255, 255);
   width: 80vw;
   max-width: 500px;
-  min-height: 15em;
   padding: 2em;
   margin-top: 10vh;
   margin-bottom: 10vh;
@@ -88,28 +87,19 @@ section #items #items__container .items__container__task div h2 {
 section #items #items__container .items__container__task:nth-child(even) {
   background-color: lightgrey;
 }
-section #items #have-tasks {
-  display: block;
-}
-section #single-task {
-  display: none;
-}
-
-.active-task {
+section #items #items__container .active-task {
   position: relative;
   background-color: white;
-  height: 6em;
   display: flex;
   flex-direction: column;
   gap: 1em;
   align-items: center;
   width: 100%;
 }
-.active-task div {
+section #items #items__container .active-task div {
   align-self: self-start;
 }
-
-.delete-btn {
+section #items #items__container .active-task .delete-btn {
   text-transform: uppercase;
   padding: 1em 2em;
   width: 100%;
@@ -120,9 +110,15 @@ section #single-task {
   color: white;
   transition: 0.2s;
 }
-.delete-btn:hover {
+section #items #items__container .active-task .delete-btn:hover {
   background-color: white;
   color: red;
+}
+section #items #have-tasks {
+  display: block;
+}
+section #single-task {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */
